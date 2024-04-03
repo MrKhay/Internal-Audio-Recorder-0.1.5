@@ -39,7 +39,7 @@ abstract class InternalAudioRecorderPlatform extends PlatformInterface {
   }
 
   // listen to audio chunks are they are produced
-  Stream<List<int>> listen() {
+  Stream<List<double>> listen() {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 }

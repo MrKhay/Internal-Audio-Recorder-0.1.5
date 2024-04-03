@@ -12,17 +12,18 @@ class MethodChannelInternalAudioRecorder extends InternalAudioRecorderPlatform {
   final methodChannel = const MethodChannel('internal_audio_recorder');
 
   /// Stream controller to manage the data stream.
-  late StreamController<List<int>> _dataStreamController;
+  late StreamController<List<double>> _dataStreamController;
 
   MethodChannelInternalAudioRecorder() {
     // Initialize the stream controller
-    _dataStreamController = StreamController<List<int>>();
+    _dataStreamController = StreamController<List<double>>();
     // Listen for events from the platform side and add them to the stream
     methodChannel.setMethodCallHandler((call) async {
       if (call.method == 'onData') {
         // Extract data from method call arguments and add it to the stream
         List<dynamic> data = call.arguments;
-        List<int> doubleData = data.cast<int>();
+        debugPrint("CHunk: $data");
+        List<double> doubleData = data.cast<double>();
         _dataStreamController.add(doubleData);
       }
     });
@@ -45,7 +46,7 @@ class MethodChannelInternalAudioRecorder extends InternalAudioRecorderPlatform {
   }
 
   @override
-  Stream<List<int>> listen() {
+  Stream<List<double>> listen() {
     return _dataStreamController.stream;
   }
 }
