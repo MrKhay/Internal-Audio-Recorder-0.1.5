@@ -104,12 +104,35 @@ class InternalAudioRecorderPlugin : FlutterPlugin, MethodCallHandler,
     private fun startCapturing(
 
     ): String? {
+              Log.d(
+                        AudioCaptureService.LOG_TAG,
+                        "OMO 1"
+                    )
         if (!File(outputPath).exists()) return "File not exist"
-
+             Log.d(
+                        AudioCaptureService.LOG_TAG,
+                        "OMO 2"
+                    )
         if (!isRecordAudioPermissionGranted()) {
+                         Log.d(
+                        AudioCaptureService.LOG_TAG,
+                        "OMO 3"
+                    )
             requestRecordAudioPermission()
+                         Log.d(
+                        AudioCaptureService.LOG_TAG,
+                        "OMO 4"
+                    )
         } else {
+                         Log.d(
+                        AudioCaptureService.LOG_TAG,
+                        "OMO 5"
+                    )
             startMediaProjectionRequest()
+                         Log.d(
+                        AudioCaptureService.LOG_TAG,
+                        "OMO 6"
+                    )
         }
 
         return null
@@ -182,7 +205,10 @@ class InternalAudioRecorderPlugin : FlutterPlugin, MethodCallHandler,
 // Modify requestRecordAudioPermission to accept the activity context
 
     private fun requestRecordAudioPermission() {
-
+             Log.d(
+                        AudioCaptureService.LOG_TAG,
+                        "OMO 33"
+                    )
         ActivityCompat.requestPermissions(
             activity,
             arrayOf(Manifest.permission.RECORD_AUDIO),
@@ -193,9 +219,15 @@ class InternalAudioRecorderPlugin : FlutterPlugin, MethodCallHandler,
     override fun onRequestPermissionsResult(
         requestCode: Int, permissions: Array<out String>, grantResults: IntArray
     ): Boolean {
-
+             Log.d(
+                        AudioCaptureService.LOG_TAG,
+                        "OMO 333"
+                    )
         if (requestCode == RECORD_AUDIO_PERMISSION_REQUEST_CODE) {
-
+             Log.d(
+                        AudioCaptureService.LOG_TAG,
+                        "OMO 3333"
+                    )
             if (grantResults.firstOrNull() == PackageManager.PERMISSION_GRANTED) {
 
                 Toast.makeText(
@@ -209,6 +241,11 @@ class InternalAudioRecorderPlugin : FlutterPlugin, MethodCallHandler,
                 ).show()
             }
         }
+
+                     Log.d(
+                        AudioCaptureService.LOG_TAG,
+                        "OMO 33333"
+                    )
         return true
     }
 
@@ -222,9 +259,16 @@ class InternalAudioRecorderPlugin : FlutterPlugin, MethodCallHandler,
      */
     private fun startMediaProjectionRequest(
     ) {
+                     Log.d(
+                        AudioCaptureService.LOG_TAG,
+                        "OMO 44"
+                    )
         mediaProjectionManager =
             context.getSystemService(Context.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
-
+             Log.d(
+                        AudioCaptureService.LOG_TAG,
+                        "OMO 444"
+                    )
         val screenCaptureIntent = mediaProjectionManager.createScreenCaptureIntent()
 
         Log.d(
