@@ -22,7 +22,7 @@ class InternalAudioRecorder {
     return InternalAudioRecorderPlatform.instance.stopCapturing();
   }
 
-  Stream<List<double>> listen() {
+  Stream<List<int>> listen() {
     return InternalAudioRecorderPlatform.instance.listen();
   }
 }

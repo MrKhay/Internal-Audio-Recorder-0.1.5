@@ -20,7 +20,7 @@ class MockInternalAudioRecorderPlatform
   }
 
   @override
-  Stream<List<double>> listen() {
+  Stream<List<int>> listen() {
     // TODO: implement listen
     throw UnimplementedError();
   }
