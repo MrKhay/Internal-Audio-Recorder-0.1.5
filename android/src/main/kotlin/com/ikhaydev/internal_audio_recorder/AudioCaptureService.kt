@@ -170,15 +170,17 @@ class AudioCaptureService : Service() {
             fileOutputStream.write(
                 capturedAudioSamples.toByteArray(), 0, BUFFER_SIZE_IN_BYTES
             )
+
+            val intent = Intent(ACTION_AUDIO_CHUNK)
+            intent.putExtra(EXTRA_AUDIO_CHUNK, capturedAudioSamples.toByteArray())
+            sendBroadcast(intent)
             // This loop should be as fast as possible to avoid artifacts in the captured audio
             // You can uncomment the following line to see the capture samples but
             // that will incur a performance hit due to logging I/O.
 //            Log.v(LOG_TAG, "Audio samples captured: ${capturedAudioSamples.toList()}")
 
         //    Log.d(LOG_TAG, "Captured: ${capturedAudioSamples.toByteArray()}")
-            // val intent = Intent(ACTION_AUDIO_CHUNK)
-            // intent.putExtra(EXTRA_AUDIO_CHUNK, capturedAudioSamples.toByteArray())
-            // sendBroadcast(intent)
+
             
 
         }
