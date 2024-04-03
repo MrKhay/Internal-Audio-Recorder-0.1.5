@@ -1,0 +1,1 @@
+ /Users/macbookpro/Downloads/Internal\ Audio\ Recorder\ 0.1.4/example/.dart_tool/flutter_build/7ead5178bbfdb1f77eb685d3d5016ac1/native_assets.yaml: 
