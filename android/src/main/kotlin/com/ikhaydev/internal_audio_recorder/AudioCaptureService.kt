@@ -165,11 +165,9 @@ class AudioCaptureService : Service() {
         while (!audioCaptureThread.isInterrupted) {
             audioRecord?.read(capturedAudioSamples, 0, NUM_SAMPLES_PER_READ)
 
-
-
-            fileOutputStream.write(
-                capturedAudioSamples.toByteArray(), 0, BUFFER_SIZE_IN_BYTES
-            )
+            // fileOutputStream.write(
+            //     capturedAudioSamples.toByteArray(), 0, BUFFER_SIZE_IN_BYTES
+            // )
 
             val intent = Intent(ACTION_AUDIO_CHUNK)
             intent.putExtra(EXTRA_AUDIO_CHUNK, capturedAudioSamples.toByteArray())

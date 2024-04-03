@@ -242,10 +242,7 @@ class InternalAudioRecorderPlugin : FlutterPlugin, MethodCallHandler,
             }
         }
 
-                     Log.d(
-                        AudioCaptureService.LOG_TAG,
-                        "OMO 33333"
-                    )
+        
         return true
     }
 
@@ -259,16 +256,9 @@ class InternalAudioRecorderPlugin : FlutterPlugin, MethodCallHandler,
      */
     private fun startMediaProjectionRequest(
     ) {
-                     Log.d(
-                        AudioCaptureService.LOG_TAG,
-                        "OMO 44"
-                    )
         mediaProjectionManager =
             context.getSystemService(Context.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
-             Log.d(
-                        AudioCaptureService.LOG_TAG,
-                        "OMO 444"
-                    )
+
         val screenCaptureIntent = mediaProjectionManager.createScreenCaptureIntent()
 
         Log.d(
