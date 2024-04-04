@@ -17,7 +17,7 @@ class MethodChannelInternalAudioRecorder extends InternalAudioRecorderPlatform {
   MethodChannelInternalAudioRecorder() {
     // Initialize the stream controller
 
-    _dataStreamController = StreamController<List<int>>();
+    _dataStreamController = StreamController<List<int>>.broadcast();
     // Listen for events from the platform side and add them to the stream
     methodChannel.setMethodCallHandler((call) async {
       if (call.method == 'onData') {
