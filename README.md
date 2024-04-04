@@ -13,25 +13,22 @@ dependencies:
 
 ## Usage
 
-```yaml
+```dart
 import 'package:internal_audio_recorder/internal_audio_recorder.dart';
-  // Example usage 
+
+InternalAudioRecorder internalAudioRecorder InternalAudioRecorde();
+
   void startRecording() async { 
-  String result = await
-  InternalAudioRecorder.startCapturing(outputPath: "path/to/output/file", encoding:
-  InternalAudioRecorder.encodingPCM16BIT, sampleRate:44100,);
-  print(result); 
-  // Output: "Recording started" or an error message 
+    File pcmOutputFile ('path/to/output.pcm');
+    await pcmOutputFile.create();
+
+   String result = await
+   internalAudioRecorder.startCapturing(outputPath: pcmOutputFile.path, encoding:
+   AudioFormat.encodingPCM16BIT, sampleRate:44100);
 }
 
-void stopRecording() { InternalAudioRecorder.stopCapturing(); print("Recording stopped"); }
+void stopRecording() { 
+  internalAudioRecorder.stopCapturing();
+  }
 ```
-
-API Reference InternalAudioRecorder.startCapturing Starts capturing internal audio.
-
-Parameters outputPath (String): The path to the output file. encoding (int): The audio encoding
-format (e.g., InternalAudioRecorder.ENCODING_PCM_16BIT). sampleRate (int): The audio sample rate.
-Returns A String indicating the result of the operation.
-
-InternalAudioRecorder.stopCapturing Stops the audio capturing process.
 
