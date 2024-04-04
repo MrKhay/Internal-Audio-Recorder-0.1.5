@@ -25,8 +25,4 @@ class InternalAudioRecorder {
   Stream<List<int>> listen() {
     return InternalAudioRecorderPlatform.instance.listen();
   }
-
-  void dispose() {
-    return InternalAudioRecorderPlatform.instance.dispose();
-  }
 }

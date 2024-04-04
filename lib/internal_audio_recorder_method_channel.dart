@@ -17,7 +17,6 @@ class MethodChannelInternalAudioRecorder extends InternalAudioRecorderPlatform {
   MethodChannelInternalAudioRecorder() {
     // Initialize the stream controller
 
-    _dataStreamController = StreamController<List<int>>.broadcast();
     // Listen for events from the platform side and add them to the stream
     methodChannel.setMethodCallHandler((call) async {
       if (call.method == 'onData') {
@@ -34,6 +33,7 @@ class MethodChannelInternalAudioRecorder extends InternalAudioRecorderPlatform {
   Future<String?> startCapturing(
       String outputPath, int encoding, int sampleRate, int delay) async {
     isRecording = true;
+    _dataStreamController = StreamController<List<int>>.broadcast();
     return await methodChannel.invokeMethod<String?>('startCapturing', {
       "outputPath": outputPath,
       "encoding": encoding,
@@ -46,6 +46,7 @@ class MethodChannelInternalAudioRecorder extends InternalAudioRecorderPlatform {
   Future<String?> stopCapturing() async {
     // Close the stream controller when capturing is stopped
     isRecording = false;
+    _dataStreamController.close();
     var responce = await methodChannel.invokeMethod('stopCapturing');
     return responce;
   }
@@ -53,11 +54,5 @@ class MethodChannelInternalAudioRecorder extends InternalAudioRecorderPlatform {
   @override
   Stream<List<int>> listen() {
     return _dataStreamController.stream;
-  }
-
-  @override
-  void dispose() {
-    _dataStreamController.close();
-    super.dispose();
   }
 }
