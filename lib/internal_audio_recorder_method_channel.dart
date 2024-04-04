@@ -46,7 +46,6 @@ class MethodChannelInternalAudioRecorder extends InternalAudioRecorderPlatform {
   Future<String?> stopCapturing() async {
     // Close the stream controller when capturing is stopped
     isRecording = false;
-    _dataStreamController.close();
     var responce = await methodChannel.invokeMethod('stopCapturing');
     return responce;
   }
@@ -54,5 +53,11 @@ class MethodChannelInternalAudioRecorder extends InternalAudioRecorderPlatform {
   @override
   Stream<List<int>> listen() {
     return _dataStreamController.stream;
+  }
+
+  @override
+  void dispose() {
+    _dataStreamController.close();
+    super.dispose();
   }
 }

@@ -24,6 +24,11 @@ class MockInternalAudioRecorderPlatform
     // TODO: implement listen
     throw UnimplementedError();
   }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+  }
 }
 
 void main() {

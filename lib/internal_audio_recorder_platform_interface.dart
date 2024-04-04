@@ -42,4 +42,9 @@ abstract class InternalAudioRecorderPlatform extends PlatformInterface {
   Stream<List<int>> listen() {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
+
+  // dispose stream
+  void dispose() {
+    throw UnimplementedError('platformVersion() has not been implemented.');
+  }
 }
